@@ -42,7 +42,7 @@ from Courier
 group by CourierID;
 
 --10. FIND THE AVERAGE DELIVERY TIME FOR EACH COURIER
-select top 1 TrackingNumber, 
+select TrackingNumber, 
 avg(datediff(day, PaymentDate, DeliveryDate)) as AvgDeliveryTime
 from Courier C
 join Payment P on C.CourierID = P.CourierID
