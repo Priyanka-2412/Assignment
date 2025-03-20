@@ -42,6 +42,11 @@ from Courier
 group by CourierID;
 
 --10. FIND THE AVERAGE DELIVERY TIME FOR EACH COURIER
+select top 1 TrackingNumber, 
+avg(datediff(day, PaymentDate, DeliveryDate)) as AvgDeliveryTime
+from Courier C
+join Payment P on C.CourierID = P.CourierID
+group by TrackingNumber
 
 --11. LIST OF ALL PACKAGES WITH A SPECIFIC WEIGHT RANGE
 select * from Courier where Weights<=2.00
