@@ -18,6 +18,14 @@ where CourierStatus = 'Delivered'
 group by convert(varchar(255), ReceiverAddress)
 
 --17. FIND THE COURIER WITH HIGHEST AVERAGE DELIVERY TIME
+------CODE TO FIND THE AVERAGE DELIVERY TIME FOR EACH COURIER
+select TrackingNumber, 
+avg(datediff(day, PaymentDate, DeliveryDate)) as AvgDeliveryTime
+from Courier C
+join Payment P on C.CourierID = P.CourierID
+group by TrackingNumber
+
+------FIND THE COURIER WITH HIGHEST AVERAGE DELIVERY TIME
 select top 1 TrackingNumber, 
 avg(datediff(day, PaymentDate, DeliveryDate)) as AvgDeliveryTime
 from Courier C
