@@ -82,27 +82,27 @@ insert into Courier (UserID, SenderName, SenderAddress, ReceiverName, ReceiverAd
 values(1, 'Priyanka Sharma', 'Bangalore', 'Rahul Verma', 'Delhi', 2.50, 'In Transit', 'TRK975324680', '2025-03-27'),
 (2, 'Rahul Verma', 'Delhi', 'Ananya Rao', 'Mumbai', 3.00, 'Delivered', 'TRK975324681', '2025-03-23'),
 (3, 'Ananya Rao', 'Mumbai', 'Karthik Reddy', 'Hyderabad', 1.75, 'Shipped', 'TRK975324682', '2025-03-24'),
-(4, 'Karthik Reddy', 'Hyderabad', 'Simran Kaur', 'Chandigarh', 2.10, 'Pending', 'TRK975324683', '2025-03-29'),
-(5, 'Simran Kaur', 'Chandigarh', 'Vikram Singh', 'Pune', 3.25, 'Delivered', 'TRK975324684', '2025-03-17'),
-(6, 'Vikram Singh', 'Pune', 'Neha Gupta', 'Kolkata', 2.00, 'In Transit', 'TRK975324685', '2025-03-29'),
+(4, 'Karthik Reddy', 'Hyderabad', 'Simran Kaur', 'Chandigarh', 2.10, 'Pending', 'TRK975324683', '2025-03-26'),
+(5, 'Simran Kaur', 'Chandigarh', 'Vikram Singh', 'Pune', 3.25, 'Delivered', 'TRK975324684', '2025-03-14'),
+(6, 'Vikram Singh', 'Pune', 'Neha Gupta', 'Kolkata', 2.00, 'In Transit', 'TRK975324685', '2025-03-30'),
 (7, 'Neha Gupta', 'Kolkata', 'Amit Tiwari', 'Lucknow', 1.80, 'Shipped', 'TRK975324686', '2025-03-25'),
 (8, 'Amit Tiwari', 'Lucknow', 'Pooja Desai', 'Surat', 2.45, 'Pending', 'TRK975324687', '2025-03-30'),
-(9, 'Pooja Desai', 'Surat', 'Ravi Kumar', 'Chennai', 2.90, 'Delivered', 'TRK975324688', '2025-03-21'),
-(10, 'Ravi Kumar', 'Chennai', 'Rhea Kapoor', 'Jaipur', 3.10, 'Shipped', 'TRK975324689', '2025-03-25')
+(9, 'Pooja Desai', 'Surat', 'Ravi Kumar', 'Chennai', 2.90, 'Delivered', 'TRK975324688', '2025-03-19'),
+(10, 'Ravi Kumar', 'Chennai', 'Rhea Kapoor', 'Jaipur', 3.10, 'Shipped', 'TRK975324689', '2025-03-22')
 
 
 --INSERTING VALUES INTO COURIERSERVICE TABLE
 insert into CourierServices (CourierID, ServiceName, Cost)
-values(975324680, 'Express Delivery', 150.00),
+values(975324680, 'Express Delivery',150.00),
 (975324681, 'Standard Delivery', 100.00),
 (975324682, 'Same-Day Delivery', 200.00),
-(975324683, 'Express Delivery', 180.00),
-(975324684, 'Standard Delivery', 120.00),
-(975324685, 'Express Delivery', 170.00),
+(975324683, 'Express Delivery', 150.00),
+(975324684, 'Standard Delivery', 100.00),
+(975324685, 'Express Delivery', 150.00),
 (975324686, 'Overnight Delivery', 250.00),
-(975324687, 'Standard Delivery', 130.00),
-(975324688, 'Express Delivery', 160.00),
-(975324689, 'Same-Day Delivery', 220.00)
+(975324687, 'Standard Delivery', 100.00),
+(975324688, 'Express Delivery', 150.00),
+(975324689, 'Same-Day Delivery', 200.00)
 
 
 --INSERTING VALUES INTO LOCATION TABLE
@@ -138,13 +138,13 @@ insert into Payment (CourierID, LocationId, Amount, PaymentDate)
 values(975324680, 6300230, 150.00, '2025-03-20'),
 (975324681, 6300231, 100.00, '2025-03-15'),
 (975324682, 6300232, 200.00, '2025-03-18'),
-(975324683, 6300233, 180.00, '2025-03-22'),
-(975324684, 6300234, 120.00, '2025-03-10'),
-(975324685, 6300230, 170.00, '2025-03-21'),
-(975324686, 6300231, 250.00, '2025-03-19'),
-(975324687, 6300232, 130.00, '2025-03-23'),
-(975324688, 6300233, 160.00, '2025-03-14'),
-(975324689, 6300234, 220.00, '2025-03-17')
+(975324683, 6300233, 150.00, '2025-03-22'),
+(975324684, 6300234, 100.00, '2025-03-10'),
+(975324685, 6300230, 180.00, '2025-03-21'),
+(975324686, 6300231, 300.00, '2025-03-19'),
+(975324687, 6300232, 100.00, '2025-03-23'),
+(975324688, 6300233, 150.00, '2025-03-14'),
+(975324689, 6300234, 250.00, '2025-03-17')
 
 select * from Users
 select * from Courier
