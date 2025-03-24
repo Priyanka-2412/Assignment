@@ -29,7 +29,7 @@ select * from Courier where TrackingNumber = 'TRK975324687'
 --6. LIST OF ALL UNDELIVERED PACKAGES
 select * from Courier where CourierStatus='Pending'
 
---7. LIST OF ALL PACKAGES THAT ARESCHEDULED FOR DELIVERY TODAY
+--7. LIST OF ALL PACKAGES THAT ARE SCHEDULED FOR DELIVERY TODAY
 select * from Courier where CourierStatus='Delivered'
 
 --8. LIST OF ALL PACKAGES WITH A SPECIFIC STATUS
