@@ -1,4 +1,4 @@
---1. Provide a SQL script that initializes the database for the Job Board scenario ìCareerHubî. 
+--1. Provide a SQL script that initializes the database for the Job Board scenario ‚ÄúCareerHub‚Äù. 
 create Database CareerHub
 
 --2. Creating tables for Companies, Jobs, Applicants and Applications.
@@ -136,7 +136,7 @@ select top 1 C.CompanyName, count(J.JobID) as JobCount
 from Jobs as J
 inner join Companies as C on J.CompanyID = C.CompanyID
 group by C.CompanyName
-order by†JobCount†desc
+order by¬†JobCount¬†desc
 
 -- 10. Find applicants who applied to companies in 'CityX' and have at least 3 years of experience
 select A.ApplicantID, A.FirstName, A.LastName, A.Email, A.Phone
@@ -162,7 +162,7 @@ if exists (
     left join Applications A ON J.JobID = A.JobID
     where A.ApplicationID is null
 else
-    PRINT 'All jobs have received applications.'
+    print 'All jobs have received applications.'
 
 -- 13. Retrieve a list of job applicants along with the companies they have applied to and the positions they have applied for.
 select A.ApplicantID, A.FirstName, A.LastName, C.CompanyName, J.JobTitle
