@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS1", "CMS1\CMS1.csproj", "{F5D262BF-9A27-43CB-A7B7-E8D44AE391F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS2", "CMS2\CMS2.csproj", "{13851918-4181-489F-931A-5AB0AE3EB150}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F5D262BF-9A27-43CB-A7B7-E8D44AE391F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5D262BF-9A27-43CB-A7B7-E8D44AE391F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5D262BF-9A27-43CB-A7B7-E8D44AE391F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5D262BF-9A27-43CB-A7B7-E8D44AE391F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13851918-4181-489F-931A-5AB0AE3EB150}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13851918-4181-489F-931A-5AB0AE3EB150}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13851918-4181-489F-931A-5AB0AE3EB150}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13851918-4181-489F-931A-5AB0AE3EB150}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5C5D8880-7E45-4BBE-87E2-9F7E61071CF7}
+	EndGlobalSection
+EndGlobal
