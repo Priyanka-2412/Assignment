@@ -24,7 +24,7 @@ Weights decimal(5,2) not null,
 CourierStatus varchar(50) not null,
 TrackingNumber varchar(20) unique not null,
 DeliveryDate date not null,
-foreign key (UserID) references Users(UserID)
+foreign key (UserID) referencesÂ Users(UserID)
 )
 
 create table CourierServices(
@@ -245,7 +245,7 @@ having avg(datediff(day, PaymentDate, DeliveryDate)) = (select max(AvgDelivery)
 from (select avg(datediff(day, PaymentDate, DeliveryDate)) as AvgDelivery
 from Courier C
 join Payment P on C.CourierID = P.CourierID
-group by TrackingNumber) as SubQuery)
+group by TrackingNumber)Â asÂ SubQuery)
 
 --18. FIND LOCATIONS WITH TOTAL PAYMENTS LESS THAN A CERTAIN AMOUNT
 select LocationID, sum(Amount) as TotalPayments
@@ -473,3 +473,33 @@ where Amount = (select max(Amount) from Payment as P)
 select CourierID, Weights
 from Courier
 where Weights = (select max(Weights) from Courier)
+
+--ADDITIONAL MODIFICATIONS 
+alter table Employee add Passwords varchar(255)
+
+update Employee set Passwords = 'Manoj@2025' WHERE EmployeeID = 2025020;
+update Employee set Passwords = 'Suresh@2025' WHERE EmployeeID = 2025021;
+update Employee set Passwords = 'Alok@2025' WHERE EmployeeID = 2025022;
+update Employee set Passwords = 'Priya@2025' WHERE EmployeeID = 2025023;
+update Employee set Passwords = 'Vikas@2025' WHERE EmployeeID = 2025024;
+update Employee set Passwords = 'Anjali@2025' WHERE EmployeeID = 2025025;
+update Employee set Passwords = 'Rohan@2025' WHERE EmployeeID = 2025026;
+update Employee set Passwords = 'Neha@2025' WHERE EmployeeID = 2025027;
+update Employee set Passwords = 'Amitabh@2025' WHERE EmployeeID = 2025028;
+update Employee set Passwords = 'Meera@2025' WHERE EmployeeID = 2025029;
+
+select * from Employee
+
+alter table Courier add EmployeeID int
+select * from Courier
+
+update Courier set EmployeeID = '2025022' where CourierID = 975324680;
+update Courier set EmployeeID = '2025022' where CourierID = 975324681;
+update Courier set EmployeeID = '2025027' where CourierID = 975324682;
+update Courier set EmployeeID = '2025027' where CourierID = 975324683;
+update Courier set EmployeeID = '2025027' where CourierID = 975324684;
+update Courier set EmployeeID = '2025022' where CourierID = 975324685;
+update Courier set EmployeeID = '2025022' where CourierID = 975324686;
+update Courier set EmployeeID = '2025027' where CourierID = 975324687;
+update Courier set EmployeeID = '2025022' where CourierID = 975324688;
+update Courier set EmployeeID = '2025027' where CourierID = 975324689;
