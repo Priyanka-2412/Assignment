@@ -476,7 +476,6 @@ where Weights = (select max(Weights) from Courier)
 
 --ADDITIONAL MODIFICATIONS 
 alter table Employee add Passwords varchar(255)
-
 update Employee set Passwords = 'Manoj@2025' WHERE EmployeeID = 2025020;
 update Employee set Passwords = 'Suresh@2025' WHERE EmployeeID = 2025021;
 update Employee set Passwords = 'Alok@2025' WHERE EmployeeID = 2025022;
@@ -487,12 +486,9 @@ update Employee set Passwords = 'Rohan@2025' WHERE EmployeeID = 2025026;
 update Employee set Passwords = 'Neha@2025' WHERE EmployeeID = 2025027;
 update Employee set Passwords = 'Amitabh@2025' WHERE EmployeeID = 2025028;
 update Employee set Passwords = 'Meera@2025' WHERE EmployeeID = 2025029;
-
 select * from Employee
 
 alter table Courier add EmployeeID int
-select * from Courier
-
 update Courier set EmployeeID = '2025022' where CourierID = 975324680;
 update Courier set EmployeeID = '2025022' where CourierID = 975324681;
 update Courier set EmployeeID = '2025027' where CourierID = 975324682;
@@ -503,3 +499,40 @@ update Courier set EmployeeID = '2025022' where CourierID = 975324686;
 update Courier set EmployeeID = '2025027' where CourierID = 975324687;
 update Courier set EmployeeID = '2025022' where CourierID = 975324688;
 update Courier set EmployeeID = '2025027' where CourierID = 975324689;
+
+
+create table TrackingHistory (
+HistoryID int identity(101,1) primary key,
+TrackingNumber varchar(20),
+LocationUpdate varchar(255),
+CourierStatus varchar(50),
+UpdatedTime datetime default getdate(),
+foreign key (TrackingNumber) references Courier(TrackingNumber)
+)
+
+insert into TrackingHistory (TrackingNumber, LocationUpdate, CourierStatus)
+values('TRK975324680', 'Reached Bangalore Hub', 'In Transit'),
+('TRK975324681', 'Delivered to receiver in Mumbai', 'Delivered'),
+('TRK975324682', 'Departed from Mumbai Facility', 'Shipped'),
+('TRK975324683', 'Awaiting Pickup in Hyderabad', 'Pending'),
+('TRK975324684', 'Delivered at Pune Address', 'Delivered'),
+('TRK975324685', 'Left Pune Center, En route to Kolkata', 'In Transit'),
+('TRK975324686', 'Arrived at Kolkata Main Facility', 'Shipped'),
+('TRK975324687', 'Shipment created in Lucknow', 'Pending'),
+('TRK975324688', 'Out for Delivery in Chennai', 'Delivered'),
+('TRK975324689', 'Left Chennai, heading to Jaipur', 'Shipped')
+select * from TrackingHistory
+
+
+alter table Users add ZipCode int
+update Users set UserAddress = '123 M G Road, Bangalore, Karnataka', ZipCode = '560001' where UserID = 1;
+update Users set UserAddress = '45 Connaught Place, Delhi, Delhi', ZipCode = '110001' where UserID = 2;
+update Users set UserAddress = '78 Marine Drive, Mumbai, Maharashtra', ZipCode = '400001' where UserID = 3;
+update Users set UserAddress = '89 Banjara Hills, Hyderabad, Telangana', ZipCode = '500034' where UserID = 4;
+update Users set UserAddress = '67 Sector 17, Chandigarh, Punjab', ZipCode = '160017' where UserID = 5;
+update Users set UserAddress = '34 FC Road, Pune, Maharashtra', ZipCode = '411004' where UserID = 6;
+update Users set UserAddress = '22 Park Street, Kolkata, West Bengal', ZipCode = '700016' where UserID = 7;
+update Users set UserAddress = '11 Hazratganj, Lucknow, Uttar Pradesh', ZipCode = '226001' where UserID = 8;
+update Users set UserAddress = '56 Ring Road, Surat, Gujarat', ZipCode = '395002' where UserID = 9;
+update Users set UserAddress = '88 T Nagar, Chennai, Tamil Nadu', ZipCode = '600017' where UserID = 10;
+select * from Users
