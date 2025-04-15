@@ -15,7 +15,6 @@ UserAddress text
 
 create table Courier(
 CourierID int identity(975324680,1) primary key not null,
-UserID int not null,
 SenderName varchar(255) not null,
 SenderAddress text not null,
 ReceiverName varchar(255) not null,
@@ -24,15 +23,18 @@ Weights decimal(5,2) not null,
 CourierStatus varchar(50) not null,
 TrackingNumber varchar(20) unique not null,
 DeliveryDate date not null,
-foreign key (UserID) referencesÂ Users(UserID)
+ServiceID int,
+EmployeeID int,
+LocationID int,
+foreign key (ServiceID) references CourierServices(ServiceID),
+foreign key (EmployeeID) references Employee(EmployeeID),
+foreign key (LocationID) references Locations(LocationID)
 )
 
 create table CourierServices(
 ServiceID int identity(192837,1) primary key not null,
-CourierID int not null,
 ServiceName varchar(100) not null,
 Cost decimal(8,2) not null,
-foreign key (CourierID) references Courier(CourierID)
 )
 
 create table Locations(
@@ -78,31 +80,31 @@ values('Priyanka Sharma', 'priyanka.sharma@email.com', 'P@ssw0rd123', '987654321
 
 
 --INSERTING VALUES INTO COURIER TABLE
-insert into Courier (UserID, SenderName, SenderAddress, ReceiverName, ReceiverAddress, Weights, CourierStatus, TrackingNumber, DeliveryDate) 
-values(1, 'Priyanka Sharma', 'Bangalore', 'Rahul Verma', 'Delhi', 2.50, 'In Transit', 'TRK975324680', '2025-03-27'),
-(2, 'Rahul Verma', 'Delhi', 'Ananya Rao', 'Mumbai', 3.00, 'Delivered', 'TRK975324681', '2025-03-23'),
-(3, 'Ananya Rao', 'Mumbai', 'Karthik Reddy', 'Hyderabad', 1.75, 'Shipped', 'TRK975324682', '2025-03-24'),
-(4, 'Karthik Reddy', 'Hyderabad', 'Simran Kaur', 'Chandigarh', 2.10, 'Pending', 'TRK975324683', '2025-03-26'),
-(5, 'Simran Kaur', 'Chandigarh', 'Vikram Singh', 'Pune', 3.25, 'Delivered', 'TRK975324684', '2025-03-14'),
-(6, 'Vikram Singh', 'Pune', 'Neha Gupta', 'Kolkata', 2.00, 'In Transit', 'TRK975324685', '2025-03-30'),
-(7, 'Neha Gupta', 'Kolkata', 'Amit Tiwari', 'Lucknow', 1.80, 'Shipped', 'TRK975324686', '2025-03-25'),
-(8, 'Amit Tiwari', 'Lucknow', 'Pooja Desai', 'Surat', 2.45, 'Pending', 'TRK975324687', '2025-03-30'),
-(9, 'Pooja Desai', 'Surat', 'Ravi Kumar', 'Chennai', 2.90, 'Delivered', 'TRK975324688', '2025-03-19'),
-(10, 'Ravi Kumar', 'Chennai', 'Rhea Kapoor', 'Jaipur', 3.10, 'Shipped', 'TRK975324689', '2025-03-22')
+insert into Courier (SenderName, SenderAddress, ReceiverName, ReceiverAddress, Weights, CourierStatus, TrackingNumber, DeliveryDate) 
+values('Priyanka Sharma', 'Bangalore', 'Rahul Verma', 'Delhi', 2.50, 'In Transit', 'TRK975324680', '2025-03-27'),
+('Rahul Verma', 'Delhi', 'Ananya Rao', 'Mumbai', 3.00, 'Delivered', 'TRK975324681', '2025-03-23'),
+('Ananya Rao', 'Mumbai', 'Karthik Reddy', 'Hyderabad', 1.75, 'Shipped', 'TRK975324682', '2025-03-24'),
+('Karthik Reddy', 'Hyderabad', 'Simran Kaur', 'Chandigarh', 2.10, 'Pending', 'TRK975324683', '2025-03-26'),
+('Simran Kaur', 'Chandigarh', 'Vikram Singh', 'Pune', 3.25, 'Delivered', 'TRK975324684', '2025-03-14'),
+('Vikram Singh', 'Pune', 'Neha Gupta', 'Kolkata', 2.00, 'In Transit', 'TRK975324685', '2025-03-30'),
+('Neha Gupta', 'Kolkata', 'Amit Tiwari', 'Lucknow', 1.80, 'Shipped', 'TRK975324686', '2025-03-25'),
+('Amit Tiwari', 'Lucknow', 'Pooja Desai', 'Surat', 2.45, 'Pending', 'TRK975324687', '2025-03-30'),
+('Pooja Desai', 'Surat', 'Ravi Kumar', 'Chennai', 2.90, 'Delivered', 'TRK975324688', '2025-03-19'),
+('Ravi Kumar', 'Chennai', 'Rhea Kapoor', 'Jaipur', 3.10, 'Shipped', 'TRK975324689', '2025-03-22')
 
 
 --INSERTING VALUES INTO COURIERSERVICE TABLE
-insert into CourierServices (CourierID, ServiceName, Cost)
-values(975324680, 'Express Delivery',150.00),
-(975324681, 'Standard Delivery', 100.00),
-(975324682, 'Same-Day Delivery', 200.00),
-(975324683, 'Express Delivery', 150.00),
-(975324684, 'Standard Delivery', 100.00),
-(975324685, 'Express Delivery', 150.00),
-(975324686, 'Overnight Delivery', 250.00),
-(975324687, 'Standard Delivery', 100.00),
-(975324688, 'Express Delivery', 150.00),
-(975324689, 'Same-Day Delivery', 200.00)
+insert into CourierServices (ServiceName, Cost)
+values('Express Delivery',150.00),
+('Standard Delivery', 100.00),
+('Same-Day Delivery', 200.00),
+('Express Delivery', 150.00),
+('Standard Delivery', 100.00),
+('Express Delivery', 150.00),
+('Overnight Delivery', 250.00),
+('Standard Delivery', 100.00),
+('Express Delivery', 150.00),
+('Same-Day Delivery', 200.00)
 
 
 --INSERTING VALUES INTO LOCATION TABLE
@@ -149,7 +151,7 @@ values(975324680, 6300230, 150.00, '2025-03-20'),
 select * from Users
 select * from Courier
 select * from CourierServices
-select * from Locations
+select * from Locations 
 select * from Employee
 select * from Payment
 
@@ -161,12 +163,12 @@ select *from Users
 
 --2. LIST OF ALL ORDERS FOR A SPECIFIC CUSTOMER:
 --IN DIFFERENT TABLE
-select * from Courier where UserID = 1
-select * from Courier where UserID = 6
-select * from Courier where UserID = 9
+select * from Courier where CourierID = 975324680
+select * from Courier where CourierID = 975324687
+select * from Courier where CourierID = 975324689
 --WITHIN SAME TABLE
 select * from Courier 
-where UserID in (1,6,9)
+where CourierID in (975324680,975324687,975324689)
 
 --3. LIST OF ALL COURIERS
 select * from Courier
@@ -174,7 +176,6 @@ select * from Courier
 --4. LIST OF ALL PACKAGES FOR SPECIFIC ORDER
 --COURIERID=975324680
 select * from Courier where CourierID = 975324680
-select * from CourierServices where CourierID = 975324680
 select * from Payment where CourierID = 975324680
 
 --5. LIST OF ALL DELIVERIES FOR A SPECIFIC ORDER
@@ -245,7 +246,7 @@ having avg(datediff(day, PaymentDate, DeliveryDate)) = (select max(AvgDelivery)
 from (select avg(datediff(day, PaymentDate, DeliveryDate)) as AvgDelivery
 from Courier C
 join Payment P on C.CourierID = P.CourierID
-group by TrackingNumber)Â asÂ SubQuery)
+group by TrackingNumber) as SubQuery)
 
 --18. FIND LOCATIONS WITH TOTAL PAYMENTS LESS THAN A CERTAIN AMOUNT
 select LocationID, sum(Amount) as TotalPayments
@@ -341,15 +342,16 @@ where PaymentDate between '2025-03-10' and '2025-03-20'
 order by PaymentDate
 
 --33. RETRIEVE A LIST OF ALL USERS AND THEIR CORRESPONDING COURIER RECORDS, INCLUDING CASES WHERE THERE ARE NO MATCHES ON EITHER SIDE
-select U.UserID, U.Names, C.CourierID, C.TrackingNumber, C.CourierStatus
+select U.*, C.*
 from Users U
 full outer join Courier C 
-on U.UserID = C.UserID
+on U.Names = C.SenderName OR U.Names = C.ReceiverName;
 
 --34. RETRIEVE A LIST OF ALL COURIERS AND THEIR CORRESPONDING COURIER RECORDS, INCLUDING CASES WHERE THERE ARE NO MATCHES ON EITHER SIDE
-select C.CourierID, C.TrackingNumber, CS.ServiceID, CS.ServiceName, CS.Cost
+select C.*, CS.*
 from Courier C
-full outer join CourierServices CS on C.CourierID = CS.CourierID
+full outer join CourierServices CS 
+on C.ServiceID = CS.ServiceID;
 
 --35. RETRIEVE A LIST OF ALL EMPLOYEES AND THEIR CORRESPONDING COURIER RECORDS, INCLUDING CASES WHERE THERE ARE NO MATCHES ON EITHER SIDE
 select E.*, P.PaymentID, P.Amount, P.PaymentDate 
@@ -365,22 +367,19 @@ select * from Employee as E
 cross join Locations as L
 
 --38. RETRIEVE A LIST OF COURIER AND THEIR CORRESPONDING SENDER INFORMATION(IF AVAILABLE)
-select C.CourierID, C.SenderName, C.SenderAddress, U.UserID, U.UserAddress
-from Courier as C
-left join Users as U 
-on C.UserID = U.UserID
+select C.CourierID, C.SenderName,C.SenderAddress, U.UserID, U.Email
+from Courier C
+left join Users U on C.SenderName = U.Names;
 
 --39. RETRIEVE A LIST OF COURIER AND THEIR CORRESPONDING RECEIVER INFORMATION(IF AVAILABLE)
-select C.CourierID, C.ReceiverName, C.ReceiverAddress, U.UserID, U.UserAddress
-from Courier as C
-left join Users as U
-on C.UserID = U.UserID
+select C.CourierID, C.ReceiverName, C.ReceiverAddress, U.UserID,U.Email
+from Courier C
+left join Users U on C.ReceiverName = U.Names;
 
 --40. RETRIEVE A LIST OF COURIERS ALONG WITH THE COURIER SERVICE DETAILS(IF AVAILABLE)
-select C.*, CS.ServiceName, CS.Cost
+select C.*, CS.*
 from Courier C
-left join CourierServices CS 
-on C.CourierID = CS.CourierID
+left join CourierServices CS on C.ServiceID = CS.ServiceID;
 
 --41. RETRIEVE A LIST OF EMPLOYEES AND THE NUMBER OF COURIERS ASSIGNED TO EACH EMPLOYEE
 select E.EmployeeID, E.Names, count(P.CourierID) as TotalCouriersAssigned
@@ -440,12 +439,11 @@ where C.CourierStatus = 'Delivered'
 group by E.EmployeeID, E.Names
 
 --48. FIND COURIERS THAT WERE PAID AN AMOUNT GREATER THAN THE COST OF THEIR RESPECTIVE COURIER SERVICES 
-select C.CourierID, CS.Cost, P.Amount
+select C.CourierID, C.SenderName, C.ReceiverName, P.Amount as PaymentAmount, CS.Cost as ServiceCost
 from Courier C
-inner join CourierServices CS on C.CourierID = CS.CourierID
-inner join Payment P on C.CourierID = P.CourierID
-where P.Amount > CS.Cost
-
+join Payment P on C.CourierID = P.CourierID
+join CourierServices CS on C.ServiceID = CS.ServiceID
+where P.Amount > CS.Cost;
 
 ---TASK5
 --49. FIND COURIERS THAT HAVE A WEIGHT GREATER THAN THE AVERAGE WEIGHT OF ALL COURIERS
@@ -488,7 +486,6 @@ update Employee set Passwords = 'Amitabh@2025' WHERE EmployeeID = 2025028;
 update Employee set Passwords = 'Meera@2025' WHERE EmployeeID = 2025029;
 select * from Employee
 
-alter table Courier add EmployeeID int
 update Courier set EmployeeID = '2025022' where CourierID = 975324680;
 update Courier set EmployeeID = '2025022' where CourierID = 975324681;
 update Courier set EmployeeID = '2025027' where CourierID = 975324682;
@@ -499,6 +496,7 @@ update Courier set EmployeeID = '2025022' where CourierID = 975324686;
 update Courier set EmployeeID = '2025027' where CourierID = 975324687;
 update Courier set EmployeeID = '2025022' where CourierID = 975324688;
 update Courier set EmployeeID = '2025027' where CourierID = 975324689;
+select * from Courier
 
 
 create table TrackingHistory (
@@ -523,7 +521,6 @@ values('TRK975324680', 'Reached Bangalore Hub', 'In Transit'),
 ('TRK975324689', 'Left Chennai, heading to Jaipur', 'Shipped')
 select * from TrackingHistory
 
-
 alter table Users add ZipCode int
 update Users set UserAddress = '123 M G Road, Bangalore, Karnataka', ZipCode = '560001' where UserID = 1;
 update Users set UserAddress = '45 Connaught Place, Delhi, Delhi', ZipCode = '110001' where UserID = 2;
@@ -536,3 +533,26 @@ update Users set UserAddress = '11 Hazratganj, Lucknow, Uttar Pradesh', ZipCode 
 update Users set UserAddress = '56 Ring Road, Surat, Gujarat', ZipCode = '395002' where UserID = 9;
 update Users set UserAddress = '88 T Nagar, Chennai, Tamil Nadu', ZipCode = '600017' where UserID = 10;
 select * from Users
+
+update Courier set LocationID = '6300230' where CourierID = 975324680;
+update Courier set LocationID = '6300231' where CourierID = 975324681;
+update Courier set LocationID = '6300232' where CourierID = 975324682;
+update Courier set LocationID = '6300233' where CourierID = 975324683;
+update Courier set LocationID = '6300234' where CourierID = 975324684;
+update Courier set LocationID = '6300235' where CourierID = 975324685;
+update Courier set LocationID = '6300236' where CourierID = 975324686;
+update Courier set LocationID = '6300237' where CourierID = 975324687;
+update Courier set LocationID = '6300238' where CourierID = 975324688;
+update Courier set LocationID = '6300239' where CourierID = 975324689;
+
+update Courier set ServiceID = '192837' where CourierID = 975324680;
+update Courier set ServiceID = '192838' where CourierID = 975324681;
+update Courier set ServiceID = '192839' where CourierID = 975324682;
+update Courier set ServiceID = '192840' where CourierID = 975324683;
+update Courier set ServiceID = '192841' where CourierID = 975324684;
+update Courier set ServiceID = '192842' where CourierID = 975324685;
+update Courier set ServiceID = '192843' where CourierID = 975324686;
+update Courier set ServiceID = '192844' where CourierID = 975324687;
+update Courier set ServiceID = '192845' where CourierID = 975324688;
+update Courier set ServiceID = '192846' where CourierID = 975324689;
+select * from Courier
